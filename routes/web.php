@@ -66,11 +66,13 @@ Route::post('admin/akun/ubahpassword/{id}', 'adminController@ubahpassword');
 
 Route::get('pasien', 'pasienController@viewPasien');
 
-Route::get('dokter', 'dokterController@viewDokter');
-Route::get('dokter/lihat','dokterController@lihatPemeriksaan');
-Route::get('dokter/lihat/{id}','dokterController@detailPemeriksaan');
-Route::get('dokter/buat/{id}', 'dokterController@buatPemeriksaan');
-Route::post('dokter/simpan/{id}', 'dokterController@simpanPemeriksaan');
+Route::group(['prefix' => 'dokter'], function () {
+    Route::get('/', 'dokterController@viewDokter');
+    Route::get('lihat','dokterController@lihatPemeriksaan');
+    Route::get('lihat/{id}','dokterController@detailPemeriksaan');
+    Route::get('buat/{id}', 'dokterController@buatPemeriksaan');
+    Route::post('simpan/{id}', 'dokterController@simpanPemeriksaan');
+});
 
 Route::get('login', 'loginController@viewLogin');
 Route::post('login', 'loginController@postLogin');
